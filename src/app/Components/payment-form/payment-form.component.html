@@ -1,0 +1,82 @@
+<div class="payment-container">
+  <h2>Payment Details</h2>
+  <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
+    <div class="form-group">
+      <label for="cardNumber">Card Number</label>
+      <input
+        type="text"
+        id="cardNumber"
+        name="cardNumber"
+        ngModel
+        required
+        placeholder="1234 5678 9012 3456"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="expMonth">Expiration Month (MM)</label>
+        <input
+          type="number"
+          id="expMonth"
+          name="expMonth"
+          ngModel
+          required
+          min="1"
+          max="12"
+          placeholder="MM"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="expYear">Expiration Year (YYYY)</label>
+        <input
+          type="number"
+          id="expYear"
+          name="expYear"
+          ngModel
+          required
+          min="2024"
+          placeholder="YYYY"
+          class="form-input"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cvc">CVC</label>
+      <input
+        type="text"
+        id="cvc"
+        name="cvc"
+        ngModel
+        required
+        placeholder="123"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="cardholderName">Cardholder Name</label>
+      <input
+        type="text"
+        id="cardholderName"
+        name="cardholderName"
+        ngModel
+        required
+        placeholder="John Doe"
+        class="form-input"
+      />
+    </div>
+
+    <div *ngIf="paymentStatus" class="alert" [ngClass]="{'alert-success': paymentStatus === 'Payment Successful!', 'alert-danger': paymentStatus !== 'Payment Successful!'}">
+      {{ paymentStatus }}
+    </div>
+
+    <button type="submit" [disabled]="isLoading">
+      Pay
+    </button>
+  </form>
+</div>
